@@ -1,6 +1,7 @@
 import sys
 import pygame
 from settings import Settings
+from ship import Ship
 
 class AlienInvasion:
     """Ogolna kalasa przeznaczona do zarządzania zasobami i sposobem działania gry"""
@@ -12,6 +13,7 @@ class AlienInvasion:
         #napis na pasku
         pygame.display.set_caption("Inwazja obcych")
 
+        self.ship = Ship(self)
 
     def run_game(self):
         """Rozpoczęcie pętli głównej gry"""
@@ -22,6 +24,9 @@ class AlienInvasion:
                     sys.exit()
             #Odświeżanie ekranu w trakcie każdej iteracji pętli
             self.screen.fill(self.settings.bg_color)
+
+            self.ship.blitme()
+
             #Wyswietlanie ostatnio zmodyfikowanego ekranu
             pygame.display.flip()
 
