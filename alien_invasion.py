@@ -18,17 +18,23 @@ class AlienInvasion:
     def run_game(self):
         """Rozpoczęcie pętli głównej gry"""
         while True:
-            #Oczekiwanie na nacisnience klawiasza
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
+            self._check_events()
             #Odświeżanie ekranu w trakcie każdej iteracji pętli
-            self.screen.fill(self.settings.bg_color)
-
-            self.ship.blitme()
+            self._update_screen()
 
             #Wyswietlanie ostatnio zmodyfikowanego ekranu
             pygame.display.flip()
+
+    def _check_events(self):
+        """Reakcja generowana  na zarzenie przez klawiature i mysz"""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+    def _update_screen(self):
+        """Odświeżanie ekranu w trakcie każdej iteracji pętli"""
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
 
 if __name__ == '__main__':
     ai = AlienInvasion()
